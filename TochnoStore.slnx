@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="tochnostore.client/tochnostore.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="TochnoStore.Server/TochnoStore.Server.csproj" />
+</Solution>
