@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || '/api';
+const API_BASE_URL = '/api';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -32,6 +32,7 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const refreshToken = localStorage.getItem('refreshToken');
+        // Используем apiClient или базовый axios для запроса обновления
         const { data } = await axios.post(`${API_BASE_URL}/v1/auth/refresh`, {
           refreshToken,
         });
