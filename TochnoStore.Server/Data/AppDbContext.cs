@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TochnoStore.Api.Entities;
 using TochnoStore.Server.Entities;
 
 namespace TochnoStore.Server.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Category> Categories => Set<Category>();
 
@@ -20,7 +17,7 @@ public class AppDbContext : DbContext
             .Property(p => p.Attributes)
             .HasColumnType("jsonb");
 
-        // Индекс для ускорения фильтрации по атрибутам (GIN индекс в Postgres)
+        // Индекс для ускорения фильтрации по атрибутам
         modelBuilder.Entity<Product>()
             .HasIndex(p => p.Attributes)
             .HasMethod("gin");

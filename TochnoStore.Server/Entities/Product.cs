@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TochnoStore.Server.Entities;
 
-namespace TochnoStore.Api.Entities;
+namespace TochnoStore.Server.Entities;
 
 public class Product
 {

@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using TochnoStore.Server.Data;
+using TochnoStore.Server.Mappers;
+using TochnoStore.Server.Services;
 
 try
 {
@@ -19,6 +22,9 @@ try
        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
            npgsqlOptions => npgsqlOptions.EnableRetryOnFailure()));
 
+    builder.Services.AddTransient<CatalogService>();
+    builder.Services.AddSingleton<ProductMapper>();
+
     var app = builder.Build();
 
     app.UseDefaultFiles();
@@ -34,6 +40,7 @@ try
         }
         app.MapOpenApi();
     }
+
     app.UseSerilogRequestLogging(); // Логирование всех HTTP-запросов через Serilog
     app.UseHttpsRedirection();
 

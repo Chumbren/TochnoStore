@@ -1,11 +1,11 @@
 ﻿using Riok.Mapperly.Abstractions;
-using TochnoStore.Api.DTOs;
-using TochnoStore.Api.Entities;
+using TochnoStore.Server.DTOs;
+using TochnoStore.Server.Entities;
 
-namespace TochnoStore.Api.Mappers;
+namespace TochnoStore.Server.Mappers;
 
 [Mapper]
-public partial class AppMapper
+public partial class ProductMapper
 {
     // Маппинг сущности в DTO
     public partial ProductDto ToDto(Product product);
